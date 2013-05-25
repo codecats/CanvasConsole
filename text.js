@@ -13,19 +13,20 @@ layer.add(consoleDisplay.getGroup());
 
 //binary
 var inp=document.documentElement.innerHTML;
-var out=Convert.toBinary(inp);
+var out=Convert.toBinary(inp,5);
 
 //first visualization
 var codeText=new Kinetic.Text({
     x:0,
     y:20,
+    height:consoleDisplay.getY(),
     text: out,
     fontSize:17,
     fontFamily:'Courier New',
     fill:'#02ff02'
 });
 
-codeText.setX(codeText.getWidth());
+codeText.setX(stage.getWidth());
 layer.add(codeText);
 var tween=new Kinetic.Tween({
     node:codeText,
@@ -38,6 +39,7 @@ var tween=new Kinetic.Tween({
 var codeTextA=new Kinetic.Text({
     x:0,
     y:20,
+    height:consoleDisplay.getY(),
     text: out,
     fontSize:17,
     fontFamily:'Courier New',
@@ -60,4 +62,7 @@ function update(){
     if(ord===1)tween.reverse();
     if(ord===2)tween.play();
     if(ord===3)anim.start();
+    if(ord===4)document.getElementsByTagName('audio')[0].play();
+    if(ord===5)document.getElementsByTagName('audio')[0].pause();
+    
 }

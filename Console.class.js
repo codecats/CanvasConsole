@@ -11,12 +11,15 @@
  * order is int number
  */
 function Console(canv,lay){
+    this.getY=function(){
+        return caret.getY()-caret.getHeight();
+    };
     this.getGroup=function(){
         return g;
-    }
+    };
     this.getOrder=function(){
         return order;
-    }
+    };
     /* 
      * turn off browser events like page down
      */
@@ -50,6 +53,14 @@ function Console(canv,lay){
         fontFamily:'Courier New',
         fill:'#02ff02'
     });
+    var commandBG=new Kinetic.Rect({//not used
+        x:0,
+        y:caret.getY()-5,
+        width:canvas.width,
+        height:caret.getHeight()+5,
+        draggable:false,
+        fill:'black'
+    });
     var g= new Kinetic.Group();
 
     /*
@@ -82,9 +93,11 @@ function Console(canv,lay){
                     break;
                 case 13://enter
                     var t=commandText.getText();
-                    if(t==='HELP')order=1;
-                    if(t==='PLAY')order=2;
-                    if(t==='ANIM')order=3;
+                    for(var ord in ORDERS){   
+                        if(t===ORDERS[ord]){
+                            order=parseInt(ord);
+                        }
+                    }
                     commandText.setText('');
                     break;
             }

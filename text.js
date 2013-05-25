@@ -6,28 +6,58 @@ var stage=new Kinetic.Stage({
                 container:'container'
             });
 var layer=new Kinetic.Layer();
+stage.add(layer);
+var consoleDisplay=new Console(document.getElementsByTagName('canvas')[0],layer);
+layer.add(consoleDisplay.getGroup());
+//Console is ready.
+
+//binary
+var inp=document.documentElement.innerHTML;
+var out=Convert.toBinary(inp);
+
+//first visualization
 var codeText=new Kinetic.Text({
     x:0,
     y:20,
-    text: document.documentElement.innerHTML,
-    fontSize:7,
+    text: out,
+    fontSize:17,
     fontFamily:'Courier New',
     fill:'#02ff02'
 });
 
-
-
 codeText.setX(codeText.getWidth());
-stage.add(layer.add(codeText));
-
-
-var cons=new Console(stageHeight,document.getElementsByTagName('canvas')[0]);
-stage.add(cons.getLayer());
-
+layer.add(codeText);
 var tween=new Kinetic.Tween({
     node:codeText,
     x:-codeText.getWidth(),
     easing: Kinetic.Easings['Linear'],
     duration:10
 });
-tween.play();
+//first visualization is ready.
+//first animantion
+var codeTextA=new Kinetic.Text({
+    x:0,
+    y:20,
+    text: out,
+    fontSize:17,
+    fontFamily:'Courier New',
+    fill:'#02ff02'
+});
+layer.add(codeTextA);
+var anim=new Kinetic.Animation(function(frame){
+    if(Math.sin(frame.time*2*Math.PI/1000)<-0.6)codeTextA.hide();
+    else codeTextA.show();
+},layer);
+//first animation is ready.
+
+/*
+ * log order every sec
+ */
+var interv=self.setInterval(update,1000);
+function update(){
+    var ord=consoleDisplay.getOrder();
+    console.log(ord);
+    if(ord===1)tween.reverse();
+    if(ord===2)tween.play();
+    if(ord===3)anim.start();
+}

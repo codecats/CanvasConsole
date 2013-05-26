@@ -11,6 +11,9 @@ var ORDERS={
     3:'ANIM',
     4:'MUZ',
     5:'MUZ STOP',
+    6:'ANIM R',
+    7:'VIS',
+    8:'VIS R',
     getKey:function(val){
         for(var prop in this){
             if(this.hasOwnProperty(prop)){

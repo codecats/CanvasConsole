@@ -20,6 +20,10 @@ function Console(canv,lay){
     this.getOrder=function(){
         return order;
     };
+    this.clearOrder=function(){
+        order=0;
+        return this;
+    }
     /* 
      * turn off browser events like page down
      */

@@ -16,9 +16,12 @@
         <script src="Convert.class.js"></script>
         <script src="Console.class.js"></script>
         <script src="ORDERS.class.js"></script>
-        <script src="./text.js">
-           
+        <script src="Visualization.class.js"></script>
+        <script src="WelcomeVis.class.js"></script>
+        <script src="./text.js">   
         </script>
+        <!-- animations -->
+        
     </div>
     <audio  controls >
         <source src="./Poison.mp3" type="audio/mpeg">

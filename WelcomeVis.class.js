@@ -1,16 +1,19 @@
 /*
  * child of Visualization
  */
-function WelcomeVis(stageWidth,maxHeight,txt){
+function WelcomeVis(stageWidth,maxHeight){
 var group;
 var codeText;
 var tween;
 var tweenColor;
 var anim;
-var fow=true;
+var fow=true;//foward
 var stageWidth=stageWidth;
 var maxHeight=maxHeight;
-var txt=txt;
+var txt=Convert.toBinary(document.documentElement.innerHTML,5);
+    this.isFinished=function(){
+        return finished;
+    }
     this.start=function(){
         tween.play();
         tweenColor.play();
@@ -49,6 +52,7 @@ var txt=txt;
             duration:5
         });
         anim=new Kinetic.Animation(function(frame){
+            console.log(group.getX());
             if(Math.sin(frame.time*2*Math.PI/1000)<-0.6)codeText.hide();
             else codeText.show();
             if(group.getX()<-(stageWidth-10)&&fow===true){
@@ -56,7 +60,12 @@ var txt=txt;
                 fow=false;
                
             }
-            console.log(group.getX());
+            if(fow===false&&group.getX()+10>stageWidth){
+                finished=true;
+         //       this.remove();
+               
+            }
+            
         },layer);
         return this;
     };
@@ -86,5 +95,6 @@ var txt=txt;
         group.add(codeText);
         return this;
     };
+    var finished=false;
 create();
 }

@@ -4,6 +4,13 @@
 
 function Visualization(){
     /*
+     * if visualization is end finished flag is set
+     * @returns fished
+     */
+    this.isFinished=function(){
+        return finished;
+    }
+    /*
      * start kinetic.animation or/and kinetic.tween
      * @returns {Visualization}
      */
@@ -56,5 +63,6 @@ function Visualization(){
     var create=function(){
         return this;
     };
+    var finished=false;
 }
 

@@ -1,5 +1,5 @@
-var stageWidth=480;
-var stageHeight=540;
+var stageWidth=320;
+var stageHeight=440;
 var stage=new Kinetic.Stage({
                 width:stageWidth,
                 height:stageHeight,
@@ -12,8 +12,7 @@ layer.add(consoleDisplay.getGroup());
 //Console is ready.
 
 //binary text
-var inp=document.documentElement.innerHTML;
-var out=Convert.toBinary(inp,5);
+
 
 //first visualization
 /*
@@ -53,7 +52,10 @@ var anim=new Kinetic.Animation(function(frame){
 },layer);*/
 //first animation is ready.
 //class visulaization
-var vis1=new WelcomeVis(stage.getWidth(),consoleDisplay.getY(),out);
+
+var vis1=null;
+var visController=new VisualizationController(layer,stageWidth,consoleDisplay.getY());
+visController.add(WelcomeVis,'V');
 
 //endclass
 /*
@@ -74,14 +76,25 @@ function update(){
         layer.draw();
     }
     if(ord===7){
-        alert(vis1.get());
-        layer.add(vis1.get());
-        vis1.init();
-        vis1.start();
+        visController.start('v',layer);
+       /* if(!vis1){
+            vis1=new WelcomeVis(stage.getWidth(),consoleDisplay.getY(),out);
+            layer.add(vis1.get());
+            vis1.init();
+            vis1.start();
+
+        }else alert('started');*/
     }
-    if(ord===8){
-        vis1.destr();
-        vis1.remove();
+    if(ord==='VIS R'){
+        visController.finish();
+       /* if(vis1){
+            if(vis1.isFinished()){
+            vis1.destr();
+            vis1.remove();
+            vis1=null;
+            }
+        }else alert('not started')*/
     }
+    if(visController.isOrder(ord))visController.start(ord,layer);
     consoleDisplay.clearOrder();
 }

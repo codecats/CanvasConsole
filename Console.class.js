@@ -97,11 +97,12 @@ function Console(canv,lay){
                     break;
                 case 13://enter
                     var t=commandText.getText();
-                    for(var ord in ORDERS){   
+               /*     for(var ord in ORDERS){   
                         if(t===ORDERS[ord]){
                             order=parseInt(ord);
                         }
-                    }
+                    }*/
+                    order=t;    
                     commandText.setText('');
                     break;
             }

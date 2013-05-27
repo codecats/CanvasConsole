@@ -15,6 +15,7 @@
         <script src="Base64.js"></script>
         <script src="Convert.class.js"></script>
         <script src="Console.class.js"></script>
+        <script src="VisualizationController.class.js"></script>
         <script src="ORDERS.class.js"></script>
         <script src="Visualization.class.js"></script>
         <script src="WelcomeVis.class.js"></script>

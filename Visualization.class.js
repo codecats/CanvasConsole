@@ -2,7 +2,7 @@
  * extendable method
  */
 
-function Visualization(){
+function Visualization(stageWidth,maxHeight){
     /*
      * if visualization is end finished flag is set
      * @returns fished

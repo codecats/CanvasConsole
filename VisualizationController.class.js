@@ -11,6 +11,7 @@ function VisualizationController(aLayer,width,height){
             currentOrder=order;
         }       
     };
+    var start=this.start;//public and private
     this.finish=function(){
         if(current){
             current.destr();
@@ -26,7 +27,7 @@ function VisualizationController(aLayer,width,height){
         var k=Bin.push(visualization);
         k--;
         Order[k]=order;
-        Key[Order]=k;
+        Key[order]=k;
         return this;
     };
     /*
@@ -46,10 +47,20 @@ function VisualizationController(aLayer,width,height){
             if(current.isFinished()){
                 finish();
             }
+        }else if(playMode==='loop'){
+            if(currentOrder){
+                k=getFirstFreeKey(Key[currentOrder]);
+                start(Order[k]);
+            }
         }
+    };
+    this.setPlayMode=function(m){
+        playMode=m;
     };
     /*
      * check if order equals @param
+     * @param {type} ord
+     * @returns {Boolean}
      */
     this.isOrder=function(ord){
         var exist=false;
@@ -57,6 +68,24 @@ function VisualizationController(aLayer,width,height){
             if(Order[o]===ord)exist=true;
         }
         return exist;
+    };
+    /*
+     * looks for the next key in array Key
+     * example: Key=array(3,4,5,6,7), keyBefore=5 => result=6
+     * 
+     */
+    var getFirstFreeKey=function(keyBefore){
+        var getNext=false;
+        var found=null;
+        for(k in Key){
+            if(getNext){
+                found=Key[k];
+                getNext=false;
+            }
+            if(keyBefore===Key[k])getNext=true;   
+        }
+        if(found===null)found=Key[Order[0]];
+        return found;
     };
     var cleaner=setInterval(intervalCleaner,2000);
     var Bin=Array();
@@ -67,5 +96,6 @@ function VisualizationController(aLayer,width,height){
     var layer=aLayer;
     var stageW=width;
     var stageH=height;
+    var playMode='once';
 }
 

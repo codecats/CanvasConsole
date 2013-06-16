@@ -10,7 +10,7 @@
  *  to layer
  * order is int number
  */
-function Console(canv,lay){
+function Console(lay){
     this.getY=function(){
         return caret.getY()-caret.getHeight();
     };
@@ -33,7 +33,7 @@ function Console(canv,lay){
             e.preventDefault();
         }
     }, false);
-    var canvas=canv;
+    var canvas=lay.getCanvas().getElement();
     var layer=lay;
     var stageHeight=canvas.height;
 

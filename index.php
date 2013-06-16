@@ -11,15 +11,20 @@
     <body>
     <div class="console">
         <div id="container"></div>
+        <!-- LIBS -->
         <script src="kinetic-v4.5.1.min.js"></script>
+        <script src="three.min.js"></script>
+        <!-- CLASSES -->
         <script src="Base64.js"></script>
         <script src="Convert.class.js"></script>
         <script src="Console.class.js"></script>
         <script src="VisualizationController.class.js"></script>
         <script src="Visualization.class.js"></script>
+        <!-- ACTION -->
         <script src="WelcomeVis.class.js"></script>
         <script src="BinaryTextVis.class.js"></script>
         <script src="./MathVis/MathVis.class.js"></script>
+        <script src="./3dVis/3dVis.class.js"></script>
         <script src="./text.js">   
         </script>
         <!-- animations -->

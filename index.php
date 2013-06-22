@@ -2,8 +2,8 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="./console.css">
-        <title>canvas</title>
+        <link rel="stylesheet" href="./assets/style/Css/Console.css">
+        <title>Canvas Console</title>
         <style>
 
         </style>
@@ -12,28 +12,35 @@
     <div class="console">
         <div id="container"></div>
         <!-- LIBS -->
-        <script src="kinetic-v4.5.1.min.js"></script>
-        <script src="three.min.js"></script>
+        <script src="./assets/script/Js/Lib/kinetic-v4.5.1.min.js"></script>
+        <script src="./assets/script/Js/Lib/three.min.js"></script>
         <!-- CLASSES -->
-        <script src="Base64.js"></script>
-        <script src="Convert.class.js"></script>
-        <script src="Console.class.js"></script>
-        <script src="VisualizationController.class.js"></script>
-        <script src="Visualization.class.js"></script>
-        <!-- ACTION -->
-        <script src="WelcomeVis.class.js"></script>
-        <script src="BinaryTextVis.class.js"></script>
-        <script src="./MathVis/MathVis.class.js"></script>
-        <script src="./3dVis/3dVis.class.js"></script>
-        <script src="./text.js">   
-        </script>
-        <!-- animations -->
+        <script src="assets/script/Js/Class/Base64.js"></script>
+        <script src="assets/script/Js/Class/Convert.class.js"></script>
+        <script src="assets/script/Js/Class/Console.class.js"></script>
+        <script src="assets/script/Js/Class/VisualizationController.class.js"></script>
+        <script src="assets/script/Js/Class/Visualization.class.js"></script>
+  
+        <script src="assets/script/Js/Class/WelcomeVis.class.js"></script>
+        <script src="assets/script/Js/Class/BinaryTextVis.class.js"></script>
+        <script src="assets/script/Js/Class/MathVis/MathVis.class.js"></script>
+        <script src="assets/script/Js/Class/3dVis/3dVis.class.js"></script>
+         
         
+        <script src="assets/script/Js/Class/CanvasConsole/Lib/Core.js"></script>
+        <script src="assets/script/Js/Class/CanvasConsole/Class/Stage.class.js"></script>
+      
+        <!-- ACTION -->
+        <script src="./assets/script/Js/Main.js">   
+        </script>
     </div>
+        
+ <!-- avalible to put command in the console line to play music. notice
+        that Poison.mp3 file is not avalible in the resource.
     <audio  controls >
         <source src="./Poison.mp3" type="audio/mpeg">
-        <source src="./poison.ogg" type="audio/ogg">
+        <source src="./Poison.ogg" type="audio/ogg">
         <embed height="50" width="100" src="horse.mp3">
-    </audio>
+    </audio> -->
     </body>
 </html>

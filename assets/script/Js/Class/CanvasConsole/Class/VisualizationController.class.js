@@ -24,11 +24,19 @@
         },
         start:function(order){
             if(!this.current){
-                this.current=new this.bin[this.key[order]](this.getWidth(), this.getHeight());
-                this.getLayer().add(this.current.get());
-                this.current.init();
-                this.current.start();
-                this.currentOrder=order;
+                try{
+                    this.current=new this.bin[this.key[order]](
+                            this.getWidth(), this.getHeight());
+                    this.getLayer().add(this.current.get());
+                    this.current.init();
+                    this.current.start();
+                    this.currentOrder=order;
+                }catch(err){      
+                    if(this.order.length>0){
+                        for(ord in this.order)this.clear(this.order[ord]);
+                        console.log('Nothing to play: cleaning up...');
+                    }   
+                }
             }
         },
         setPlayMode:function(mode){
@@ -49,19 +57,39 @@
     /*
      * looks for the next key in array Key
      * example: Key=array(3,4,5,6,7), keyBefore=5 => result=6
-     * TODO: countToPlay
+     * 
      */
         getFirstFreeKey:function(keyBefore){
             var getNext=false;
             var found=null;
             for(k in this.key){
                 if(getNext){
-                    found=this.key[k];
-                    getNext=false;
+                    if(this.countToPlay[this.key[k]]>0){
+                        if(this.countToPlay[this.key[k]]!==Infinity){
+                            this.countToPlay[this.key[k]]--;
+                        }
+                        found=this.key[k];
+                        getNext=false;
+                    }
                 }
-                if(keyBefore===this.key[k])getNext=true;
+                if(keyBefore===this.key[k]){
+                    getNext=true;
+                }
             }
-            if(found===null)found=this.key[this.order[0]];
+            
+             //if nothing fount search from beginning
+             
+            if(found===null){
+                for(k in this.key){
+                    if(this.countToPlay[this.key[k]]>0){
+                        if(this.countToPlay[this.key[k]]!==Infinity){
+                            this.countToPlay[this.key[k]]--;
+                        }
+                        found=this.key[k];
+                    }
+                }
+                
+            }
             return found;
         },
         finish:function(){
@@ -79,7 +107,6 @@
             this.order.pop(k);
             this.countToPlay.pop(k);
             this.bin.pop(k);
-            
         },
     /*
      * 'cleaner' - timer check if visualization is finished, and if flag is set then
@@ -89,11 +116,9 @@
         intervalCleaner:function(){
             var controller=this;
             return function(){
-                
                 if(controller.current){
                     if(controller.current.isFinished()){
                         controller.finish();
-                        
                     }
                 }else if(controller.playMode==='loop'){
                     if(controller.currentOrder){

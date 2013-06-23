@@ -36,30 +36,13 @@
             this._set('consoleY', this.console.getY());
         },
         /* switch betweem animations */
-      //  visController:VisualizationController,
         visController:strz_console.VisualizationController,
         initVisController:function(){
-          /*  this.visController=new this.visController(
-                    this.layer, this.stage.getWidth(),
-                    this._get('consoleY'));
-                    
-            var vis=this._get('visualizations');
-            var visOrder=this._get('visualizationOrder');
-            for(var orderVis in vis){
-                this.visController.add(vis[orderVis][0], orderVis);
-                if(visOrder.start===orderVis)
-                    this.visController.start(orderVis, this.layer);
-            }
-            this.visController.setPlayMode(visOrder['play']);
-            */
-            
-            console.log(this.visController);
             this.visController=new this.visController({
                 layer:this.layer,
                 width:this.stage.getWidth(),
                 height:this._get('consoleY')
             });
-            console.log(this.visController);
             var vis=this._get('visualizations');
             var visOrder=this._get('visualizationOrder');
             for(var orderVis in vis){
@@ -99,14 +82,3 @@
     };
     strz_console.Extend(strz_console.CanvasController, strz_console.Node);
 })();
-/*
- * visController.setPlayMode('loop');
-visController.start('V',layer);
- */
-
-/*
- *     visualizationOrder:{
-        'play':'loop',
-        'start':'V'
-    }
- */

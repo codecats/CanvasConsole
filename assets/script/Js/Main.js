@@ -5,14 +5,14 @@ var contr=new strz_console.CanvasController({
     width:stageWidth,
     height:stageHeight,
     visualizations:{
-        'V':[WelcomeVis,3],
-        'B ORD':[BinaryTextVis,Infinity],
-        'A':[MathVis, Infinity],
-        '3':[ThreeDVis, Infinity]
+        'V':[WelcomeVis,1],
+        'BINARY VIS':[BinaryTextVis,1],
+        'MATHVIS':[MathVis, Infinity],
+  //      '3':[ThreeDVis, Infinity]
     },
     visualizationOrder:{
         play:'loop',
-        start:'V'
+        start:'V'//starting index not counting down in first show
     }
 });
 contr.run();

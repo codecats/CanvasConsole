@@ -4,6 +4,7 @@
 function VisualizationController(aLayer,width,height){
     this.start=function(order){
         if(!current){
+            console.log(Bin);
             current=new Bin[Key[order]](stageW,stageH);
             layer.add(current.get());
             current.init();

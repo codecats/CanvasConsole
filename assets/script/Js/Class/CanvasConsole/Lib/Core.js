@@ -14,9 +14,8 @@ var strz_console={};
      */
     strz_console.Extend=function(child, parent){
         for(var i in parent.prototype){
-            if((child.prototype.hasOwnProperty(i)===false)){
-                child.prototype[i]=parent.prototype[i];
-            }
+            if((child.prototype.hasOwnProperty(i)===false))
+                child.prototype[i]=parent.prototype[i];  
         }
         child.prototype.uber=parent.prototype;
     };

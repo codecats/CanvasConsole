@@ -24,12 +24,21 @@
         <script src="assets/script/Js/Class/WelcomeVis.class.js"></script>
         <script src="assets/script/Js/Class/BinaryTextVis.class.js"></script>
         <script src="assets/script/Js/Class/MathVis/MathVis.class.js"></script>
-        <script src="assets/script/Js/Class/3dVis/3dVis.class.js"></script>
+        <script src="assets/script/Js/Class/ThreeDVis/ThreeDVis.class.js"></script>
          
         
         <script src="assets/script/Js/Class/CanvasConsole/Lib/Core.js"></script>
-        <script src="assets/script/Js/Class/CanvasConsole/Class/Stage.class.js"></script>
+        <script src="assets/script/Js/Class/CanvasConsole/Lib/Node.js"></script>
+        
+        <!-- Visualization Controller-->
+        <script src="assets/script/Js/Class/CanvasConsole/Class/VisualizationContainer.class.js"></script>
+        <script src="assets/script/Js/Class/CanvasConsole/Class/VisualizationController.class.js"></script>
       
+        
+<!--        <script src="assets/script/Js/Class/CanvasConsole/Lib/NodeTest.js"></script> -->
+        <script src="assets/script/Js/Class/CanvasConsole/Class/CanvasController.class.js"></script>
+        
+        
         <!-- ACTION -->
         <script src="./assets/script/Js/Main.js">   
         </script>

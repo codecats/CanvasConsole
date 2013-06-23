@@ -1,40 +1,30 @@
-var s=new strz_console.Stage({height:30,widht:40});
-
-
 var stageWidth=320;
 var stageHeight=440;
-var stage=new Kinetic.Stage({
-                width:stageWidth,
-                height:stageHeight,
-                container:'container'
-            });
-var layer=new Kinetic.Layer();
-stage.add(layer);
-var consoleDisplay=new Console(layer);
-layer.add(consoleDisplay.getGroup());
-//Console is ready.
 
-var visController=new VisualizationController(layer,stageWidth,consoleDisplay.getY());
-visController.add(WelcomeVis,'V');
-visController.add(BinaryTextVis,'B');
-visController.add(MathVis,'A');
-visController.setPlayMode('loop');
-visController.start('A',layer);
+var contr=new strz_console.CanvasController({
+    width:stageWidth,
+    height:stageHeight,
+    visualizations:{
+        'V':[WelcomeVis,3],
+        'B ORD':[BinaryTextVis,Infinity],
+        'A':[MathVis, Infinity],
+        '3':[ThreeDVis, Infinity]
+    },
+    visualizationOrder:{
+        play:'loop',
+        start:'V'
+    }
+});
+contr.run();
+
+var stage=contr.stage;
+var layer=contr.layer;
+
+
 /*
  * log order every sec
  */
 
-var interv=self.setInterval(update,1000);
-function update(){
-    var ord=consoleDisplay.getOrder();
-    if(ord==='STOP'){
-        visController.finish();
-    }
-    if(visController.isOrder(ord))visController.start(ord,layer);
-    if(ord==='LOOP')visController.setPlayMode('loop');
-    if(ord==='ONCE')visController.setPlayMode('once');
-    consoleDisplay.clearOrder();
-}
 
 /* !!!!!!!!!!!!!!!!!!!!!!!three test!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
     var layer3d=new Kinetic.Layer();

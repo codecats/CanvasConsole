@@ -1,7 +1,7 @@
 /*
  * child of Visualization
  */
-function MathVis(stageWidth,maxHeight){
+function ThreeDVis(stageWidth,maxHeight){
 var group;
 var codeText;
 var img=Array();
@@ -87,11 +87,15 @@ var doStart=false;//if image loads mark this flag
             y:20,*/
             draggable:false,
         });
+        //get current workin directory getcwd()
+        var scripts= document.getElementsByTagName('script');
+        var path= scripts[scripts.length-1].src.split('?')[0];      // remove any ?query
+        var mydir= path.split('/').slice(0, -1).join('/')+'/';  // remove last filename part of path
 
-        setImages('./MathVis/integral.png',5);
-        setImages('./MathVis/derivative.png',3);
-        setImages('./MathVis/equation.png',6);
-        setImages('./MathVis/arcsin.png',4);
+        setImages(mydir+'Class/MathVis/integral.png',5);
+        setImages(mydir+'Class/MathVis/derivative.png',3);
+        setImages(mydir+'Class/MathVis/equation.png',6);
+        setImages(mydir+'Class/MathVis/arcsin.png',4);
      
        for(var src in imageSrcs){
             imageUrl[src]=new Image();

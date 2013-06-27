@@ -17,8 +17,9 @@
         <!-- CLASSES -->
         <script src="assets/script/Js/Class/Base64.js"></script>
         <script src="assets/script/Js/Class/Convert.class.js"></script>
-        <script src="assets/script/Js/Class/Console.class.js"></script>
-        <script src="assets/script/Js/Class/VisualizationController.class.js"></script>
+     <!--   <script src="assets/script/Js/Class/Console.class.js"></script> -->
+        
+     <!--   <script src="assets/script/Js/Class/VisualizationController.class.js"></script>-->
         <script src="assets/script/Js/Class/Visualization.class.js"></script>
   
         <script src="assets/script/Js/Class/WelcomeVis.class.js"></script>
@@ -30,11 +31,19 @@
         <script src="assets/script/Js/Class/CanvasConsole/Lib/Core.js"></script>
         <script src="assets/script/Js/Class/CanvasConsole/Lib/Node.js"></script>
         
-        <!-- Visualization Controller-->
-        <script src="assets/script/Js/Class/CanvasConsole/Class/VisualizationContainer.class.js"></script>
-        <script src="assets/script/Js/Class/CanvasConsole/Class/VisualizationController.class.js"></script>
-      
+        <!-- Console -->
+        <script src="assets/script/Js/Class/CanvasConsole/Class/Console/ConsoleText.class.js"></script>
+        <script src="assets/script/Js/Class/CanvasConsole/Class/Console/ConsoleOrder.class.js"></script>
+        <script src="assets/script/Js/Class/CanvasConsole/Class/Console/ConsoleModel.class.js"></script>
+        <script src="assets/script/Js/Class/CanvasConsole/Class/Console/Console.class.js"></script>
         
+        <!-- Visualization Controller-->
+        <script src="assets/script/Js/Class/CanvasConsole/Class/ControllerVis/VisualizationContainer.class.js"></script>
+        <script src="assets/script/Js/Class/CanvasConsole/Class/ControllerVis/VisualizationController.class.js"></script>
+      
+        <!-- Visualization completly independent of other objects: require strz_console.Node-->
+        <script src="assets/script/Js/Class/CanvasConsole/Class/Visualization/VisualizationNode.class.js"></script>
+
 <!--        <script src="assets/script/Js/Class/CanvasConsole/Lib/NodeTest.js"></script> -->
         <script src="assets/script/Js/Class/CanvasConsole/Class/CanvasController.class.js"></script>
         

@@ -29,7 +29,8 @@
             this.stage.add(this.layer);
         },
         /* listen to orders, show input type*/
-        console:Console,
+        //console:Console,old
+        console:strz_console.Console,
         initConsole:function(){
             this.console=new this.console(this.layer);
             this.layer.add(this.console.getGroup());

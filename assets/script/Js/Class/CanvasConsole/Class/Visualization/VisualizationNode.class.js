@@ -1,18 +1,36 @@
 (function(){
     strz_console.VisualizationNode=function(){};
     strz_console.VisualizationNode.prototype={
-        /*
-         * if visualization is end finished flag is set
-         * @returns fished
+        finishedListener : null,
+        setFinishedListener : function(listener) {
+            this.finishedListener = listener;
+            return this;
+        },
+        /**
+         * When visualization finished own life cycle then should invoke 
+         * callFinished.
+         * It is closure because Animation content is in difference scope.
+         * 
+         * @returns closure
          */
-        isFinished:function(){
-            return this.finished;
+        callFinished : function() {
+            return function(){
+                self.finishedListener['object'][self.finishedListener['call']]();
+            };
+        },
+        /**
+         * Initialize data
+         * 
+         * @returns this
+         */
+        init : function() {
+            alert('overload init');
         },
         /*
          * start kinetic.animation or/and kinetic.tween
          * @returns {Visualization}
          */
-        start:function(){
+        start:function() {
             alert('visualization started');
             return this;
         },
@@ -37,7 +55,7 @@
          * (KineticJS condition)
          * @returns {Visualization}
          */
-        init:function(){
+        initMove:function(){
             return this;
         },
         /*
@@ -52,7 +70,7 @@
          * @returns {unresolved}
          */
         get:function(){
-            alert('get');
+            alert('overload VisualizationNode main mehods');
             return null;
         },
         /*
@@ -61,8 +79,7 @@
          */
         create:function(){
             return this;
-        },
-        finished:false
+        }
     };
     strz_console.Extend(strz_console.VisualizationNode, strz_console.Node);
 })();

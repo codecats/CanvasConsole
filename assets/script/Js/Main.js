@@ -5,18 +5,35 @@ var contr=new strz_console.CanvasController({
     width:stageWidth,
     height:stageHeight,
     visualizations:{
-        'V':[WelcomeVis,1],
-        'BINARY VIS':[BinaryTextVis,1],
-        'MATHVIS':[MathVis, Infinity],
+        //command : [class, count, args]
+        //Listener
+        'A':[BinaryTextVisListener, Infinity, {}],
+        'B':[MathVisListener, Infinity, {}],
+        
+        //OOP
+    //    'MATHVIS':[MathVisOOP, Infinity, {}],
+   //     'A':[SimpleVisOOP, Infinity, {}],
+  //      'B':[BinaryTextVisOOP, Infinity, {}],
+       // 'C':[BinaryTextVisOOP, Infinity, {}],
+        
+        //OLD
+       // 'V':[WelcomeVis, 1, {}],
+       // 'BINARY VIS':[BinaryTextVis, 1, {a:'abc'}],
+       // 'MATHVIS':[MathVis, Infinity, {}],
   //      '3':[ThreeDVis, Infinity]
     },
     visualizationOrder:{
         play:'loop',
-        start:'V'//starting index not counting down in first show
+        start:'A'//starting index not counting down in first show
     }
 });
 contr.run();
 
+
+/**
+ * HERE IS DIRTY TEST FOR USING THREEJS
+ * 
+ */
 var stage=contr.stage;
 var layer=contr.layer;
 

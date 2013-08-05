@@ -17,6 +17,7 @@
         key:[],//
         order:[],//all order array
         countToPlay:[],//counter down: show how many Visualization have to be shown
+        arguments:[],//arguments for each Visulalizations
         current:null,//Visualization instance
         currentOrder:null,//order to do in next time interval
         playMode:'once',//once, loop      

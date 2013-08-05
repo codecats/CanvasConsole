@@ -1,21 +1,37 @@
-(function(){
-    strz_console.ConsoleOrder=function(lay){
-        var self=this;
-        var __construct=function(layer){
-         
+(function() {
+    /**
+     * Manipulate with orders
+     * 
+     * @param Kinetic.Layer lay
+     */
+    strz_console.ConsoleOrder = function(lay) {
+        var self = this;
+        var __construct = function(layer) {
+
         };
         __construct(lay);
     };
-    strz_console.ConsoleOrder.prototype={
-        _order:null,
-        setOrder:function(val){
-            this._order=val;
+    strz_console.ConsoleOrder.prototype = {
+        /**
+         *@private string _order holding current order
+         */
+        _order: null,
+        
+        /**
+         * Sets the order
+         * 
+         * @param string val
+         * @returns this
+         */
+        setOrder: function(val) {
+            this._order = val;
+            return this;
         },
-        getOrder:function(){
+        getOrder: function() {
             return this._order;
         },
-        clearOrder:function(){
-            this._order=0;
+        clearOrder: function() {
+            this._order = 0;
             return this;
         }
     };

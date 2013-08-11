@@ -1,12 +1,13 @@
 (function(){
-    MathVisOOP = function(stageWidth, maxHeight, args){
+    SimpleVisOOP = function(stageWidth, maxHeight, args){
         var __construct = function(stageWidth, maxHeight, args) {
+            console.log('contstr');
             self.init(stageWidth, maxHeight, args);
         };
         self = this;
         __construct(stageWidth, maxHeight, args);
     };
-    MathVisOOP.prototype = {
+    SimpleVisOOP.prototype = {
         group           : null,
         codeText        : null,
         img             : [],
@@ -23,13 +24,16 @@
         stageWidth      : null, //stageWidth;
         maxHeight       : null, //maxHeight;
         doStart         : false, //if image loads mark this flag
+        finished        : false,
 
         init : function(stageWidht, maxHeight, args) {
+            console.log('init');
             this.stageWidth = stageWidht;
             this.maxHeight = maxHeight;
             this.create();
         },
         start:function() {
+            console.log('start');
             for(var key in this.tweensArray){
                 this.tweenObj = this.tweensArray[key];
                     for(var t in this.tweenObj){
@@ -46,10 +50,14 @@
             return this;
         },
         remove:function(){
+    console.log('remove');
+            this.group.removeChildren();
             this.group.remove();
+            this.group = null;
             return this;
         },
         initMove:function(){
+    console.log('initMove');
             var group = this.group;
             var stageWidht = this.stageWidth;
             var listener = this.callFinished();
@@ -62,7 +70,8 @@
             });
             this.anim=new Kinetic.Animation(function(frame){
                 if(fow===false&&group.getX()+10>stageWidth){
-                    listener();             
+        //            listener();             
+       
                 }
 
             },layer);
@@ -70,26 +79,33 @@
             return this;
         },
         destr:function(){
-            console.log(this.tweensArray);
+    console.log('destr');
+            console.log(this.tweenObj);
+         /*   for(var tw in this.tweenObj){
+                this.tweenObj[tw].reset();
+            }*/
             for(var tw in this.tweensArray){
                 this.tweenObj = this.tweensArray[tw];
                 for(var t in this.tweenObj){
                     console.log(this.tweensArray[tw][t]);
-                    this.tweensArray[tw][t] = null;
+                    //smthing wrong here
                 }
                 
             }
+            console.log('destr finish');
             this.tween.reset();
             this.anim.stop();
             this.tween=null;
             this.anim=null;
             this.tweensArray = null;
+       
             return this;
         },
         get:function(){
             return this.group;
         },
         create:function(){
+    console.log('create');
             this.group=new Kinetic.Group({
                 x : this.stageWidth*2,
                 y : 20,
@@ -101,11 +117,11 @@
             var path= scripts[scripts.length-1].src.split('?')[0];      // remove any ?query
             var mydir= path.split('/').slice(0, -1).join('/')+'/';  // remove last filename part of path
 
-            this.setImages(mydir+'Class/Animation/MathVisOOP/integral.png',5);
-            this.setImages(mydir+'Class/Animation/MathVisOOP/derivative.png',3);
+            this.setImages(mydir+'Class/Animation/MathVisOOP/integral.png',1);
+          /*  this.setImages(mydir+'Class/Animation/MathVisOOP/derivative.png',3);
             this.setImages(mydir+'Class/Animation/MathVisOOP/equation.png',6);
             this.setImages(mydir+'Class/Animation/MathVisOOP/arcsin.png',4);
-
+*/
            for(var src in this.imageSrcs){
                 this.imageUrl[src] = new Image();
                 this.imageUrl[src].src = this.imageSrcs[src];//imageUrl=http://localhost/ <> imageSrcs=./
@@ -187,8 +203,8 @@
                 easing: Kinetic.Easings['Linear'],
                 duration:10,
                 onFinish:function(){
-                    //finished=true;   
-                    listener();
+                    self.finished=true;   
+               //     listener();
                 }
             });
             return t;
@@ -198,5 +214,5 @@
             this.doStart = val;
         }
     };
-    strz_console.Extend(MathVisOOP, strz_console.VisualizationNode);
+    strz_console.Extend(SimpleVisOOP, strz_console.VisualizationNode);
 })();

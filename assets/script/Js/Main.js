@@ -6,14 +6,20 @@ var contr=new strz_console.CanvasController({
     height:stageHeight,
     visualizations:{
         //command : [class, count, args]
-        //Listener
-        'A':[BinaryTextVisListener, Infinity, {}],
-        'B':[MathVisListener, Infinity, {}],
+        /*Listener - MathVisListener problem, when create it needs finish listener but
+          first object is created in VisController, MathVisL call create (which needs listener
+          after create Controller decord Listener and call init/initMove, it's too late
+        */
+     //   'A':[BinaryTextVisListener, Infinity, {}],
+     //   'B':[MathVisListener, Infinity, {}],
         
         //OOP
     //    'MATHVIS':[MathVisOOP, Infinity, {}],
-   //     'A':[SimpleVisOOP, Infinity, {}],
-  //      'B':[BinaryTextVisOOP, Infinity, {}],
+    /*
+     * TODO: make simple anims with flying Images
+     */
+        'A':[SimpleVisOOP, Infinity, {}],
+        'B':[BinaryTextVisOOP, Infinity, {}],
        // 'C':[BinaryTextVisOOP, Infinity, {}],
         
         //OLD
@@ -27,6 +33,7 @@ var contr=new strz_console.CanvasController({
         start:'A'//starting index not counting down in first show
     }
 });
+//turn off for a while
 contr.run();
 
 
@@ -37,7 +44,12 @@ contr.run();
 var stage=contr.stage;
 var layer=contr.layer;
 
+/*
+var simpleOOP = new SimpleVisOOP(stage.getWidth(), stage.getHeight(), {});
 
+layer.add(simpleOOP.get());
+
+simpleOOP.initMove();*/
 /*
  * log order every sec
  */

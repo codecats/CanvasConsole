@@ -11,15 +11,13 @@
         __construct(stageWidth, maxHeight, args);
     };
     BinaryTextVisOOP.prototype = {
-        group : null,
+
         codeText : null,
         codeBgText : null,
         tween : null,
         tweenBg : null,
         anim : null,
         fow : true,
-        stageWidth : null,
-        maxHeight : null,
         txt : null,
         
         init : function(stageWidht, maxHeight, args){

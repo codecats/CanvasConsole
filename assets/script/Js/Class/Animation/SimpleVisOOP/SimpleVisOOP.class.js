@@ -1,217 +1,261 @@
+/*
+ * Child of Visualization.
+ * 
+ * IMPORTANT: do not use array.push(kinetic.object) it make layer errors
+ */
 (function(){
     SimpleVisOOP = function(stageWidth, maxHeight, args){
-        var __construct = function(stageWidth, maxHeight, args) {
-            console.log('contstr');
-            self.init(stageWidth, maxHeight, args);
+        
+        var __construct = function(stageWidth, maxHeight, args){
+           self.init(stageWidth, maxHeight, args);
         };
         self = this;
         __construct(stageWidth, maxHeight, args);
     };
     SimpleVisOOP.prototype = {
-        group           : null,
-        codeText        : null,
-        img             : [],
-        imageUrl        : [],
-        imageSrcs       : [],
-        imageCounts     : [],
-        tweensArray     : [],
-        imgIntegral     : null,
-        imgDerivative   : null,
-        integral        : null,
-        tween           : null,
-        tweensObj       : [],
-        anim            : null,
-        stageWidth      : null, //stageWidth;
-        maxHeight       : null, //maxHeight;
-        doStart         : false, //if image loads mark this flag
-        finished        : false,
 
-        init : function(stageWidht, maxHeight, args) {
-            console.log('init');
-            this.stageWidth = stageWidht;
-            this.maxHeight = maxHeight;
+        imageIntegral   : [],
+        tweenIntegral   : [],
+        integralCount   : 2,
+        
+        imageDerivative : [],
+        tweenDerivative : [],
+        derivativeCount : 3,
+        
+        imageEquation   : [],
+        tweenEquation   : [],
+        equationCount   : 3,
+        
+        imageArcsin     : [],
+        tweenArcsin     : [],
+        arcsinCount     : 5,
+        
+
+        
+        init : function(stageWidht, maxHeight, args){
+            this.stageWidth=stageWidth;
+            this.maxHeight=maxHeight;
             this.create();
         },
-        start:function() {
-            console.log('start');
-            for(var key in this.tweensArray){
-                this.tweenObj = this.tweensArray[key];
-                    for(var t in this.tweenObj){
-                        this.tweensArray[key][t].play();
-                    }
+        start : function(){
+            for(var i in this.tweenIntegral){
+                this.tweenIntegral[i].play();
             }
-            this.doStart = true;
-            return this;
-        },
-        stop:function(){
-            for(var t in this.tweensObj){
-                this.tweensObj[t].pause();
+            for(var i in this.tweenDerivative){
+                this.tweenDerivative[i].play();
+            }
+            for(var i in this.tweenEquation){
+                this.tweenEquation[i].play();
+            }
+            for(var i in this.tweenArcsin){
+                this.tweenArcsin[i].play();
             }
             return this;
         },
-        remove:function(){
-    console.log('remove');
-            this.group.removeChildren();
+        stop : function(){
+          //  this.tween.reset();
+            for(var i in this.tweenIntegral){
+                this.tweenIntegral[i].reset();
+            }
+            for(var i in this.tweenDerivative){
+                this.tweenDerivative[i].reset();
+            }
+            for(var i in this.tweenEquation){
+                this.tweenEquation[i].reset();
+            }
+            for(var i in this.tweenArcsin){
+                this.tweenArcsin[i].reset();
+            }
+            return this;
+        },
+        remove : function(){
             this.group.remove();
-            this.group = null;
             return this;
         },
-        initMove:function(){
-    console.log('initMove');
-            var group = this.group;
-            var stageWidht = this.stageWidth;
-            var listener = this.callFinished();
-            
-            this.tween=new Kinetic.Tween({
-                node:this.group,
-                x:-stageWidth,
-                easing: Kinetic.Easings['Linear'],
-                duration:5
-            });
-            this.anim=new Kinetic.Animation(function(frame){
-                if(fow===false&&group.getX()+10>stageWidth){
-        //            listener();             
-       
-                }
-
-            },layer);
-
-            return this;
+        destr : function(){
+            this.stop();
         },
-        destr:function(){
-    console.log('destr');
-            console.log(this.tweenObj);
-         /*   for(var tw in this.tweenObj){
-                this.tweenObj[tw].reset();
-            }*/
-            for(var tw in this.tweensArray){
-                this.tweenObj = this.tweensArray[tw];
-                for(var t in this.tweenObj){
-                    console.log(this.tweensArray[tw][t]);
-                    //smthing wrong here
-                }
-                
-            }
-            console.log('destr finish');
-            this.tween.reset();
-            this.anim.stop();
-            this.tween=null;
-            this.anim=null;
-            this.tweensArray = null;
-       
-            return this;
-        },
-        get:function(){
+        get : function(){
             return this.group;
         },
-        create:function(){
-    console.log('create');
-            this.group=new Kinetic.Group({
-                x : this.stageWidth*2,
-                y : 20,
-                draggable : false,
-            });
-            var group = this.group;
-            //get current workin directory getcwd()
-            var scripts= document.getElementsByTagName('script');
-            var path= scripts[scripts.length-1].src.split('?')[0];      // remove any ?query
-            var mydir= path.split('/').slice(0, -1).join('/')+'/';  // remove last filename part of path
-
-            this.setImages(mydir+'Class/Animation/MathVisOOP/integral.png',1);
-          /*  this.setImages(mydir+'Class/Animation/MathVisOOP/derivative.png',3);
-            this.setImages(mydir+'Class/Animation/MathVisOOP/equation.png',6);
-            this.setImages(mydir+'Class/Animation/MathVisOOP/arcsin.png',4);
-*/
-           for(var src in this.imageSrcs){
-                this.imageUrl[src] = new Image();
-                this.imageUrl[src].src = this.imageSrcs[src];//imageUrl=http://localhost/ <> imageSrcs=./
-                this.imageSrcs[src] = this.imageUrl[src].src;//imageUrl=http://localhost/ === imageSrcs=imageUrl=http://localhost/
+        initMove : function(){
+            //call it when sequention is finish
+            var listener = this.callFinished();
+            // Base speed duration
+            var speed = 10;
                 
-                var imageUrl = this.imageUrl;
-                var imageCounts = this.imageCounts;
-                var objFromImg = this.objFromImg;
-                var randTween = this.randTween;
-                var tweensArray = this.tweensArray;
-                var doStart = this.doStart;
-                var start = this.start;
-                var setRandPos = this.setRandPos;
-                var maxHeight = this.stageWidth;
-                var stageWidht = this.stageWidth;
-                var setDoStart = this.setDoStart;
-                var self = this;
-                
-                this.imageUrl[src].onload=function(){
-                    var allLoaded=true;
-                    for(var src in imageUrl){//check all urls is complete true
-                        if(!imageUrl[src].complete)allLoaded=false;
-
+            for(var i in this.imageIntegral){
+                this.tweenIntegral[i] = new Kinetic.Tween({
+                    node : this.imageIntegral[i],
+                    //finish at 
+                    x : -(this.stageWidth+this.imageIntegral[i].getX())*2,
+                    easing : Kinetic.Easings['Linear'],
+                    duration : speed + ((Math.random()*5)+0),
+                    onFinish : function(){
+                        listener();
                     }
-                    if(allLoaded){//if all imgs loaded create objects and tweens
-                        for(var key in imageUrl){
-                            for(var i=0;i<imageCounts[key];++i){
-                                var o=objFromImg(imageUrl[key]);
-                                o=setRandPos(o);
-                                self.group.add(o);
-                                var tw=randTween(o);
-                                if(tweensArray[key])tweensArray[key].push(tw);
-                                else{
-                                    tweensArray[key]=Array();
-                                    tweensArray[key].push(tw);
-                                }
-                            }
-                        }
-                        if(self.doStart){
-                           
-                            self.start();
-                            self.setDoStart(false);
-                        }
-                    }
-                };
+                });
             }
+            
+            for(var i in this.imageDerivative){
+                this.tweenDerivative[i] = new Kinetic.Tween({
+                    node : this.imageDerivative[i],
+                    //finish at 
+                    x : -(this.stageWidth+this.imageDerivative[i].getX())*2,
+                    easing : Kinetic.Easings['Linear'],
+                    duration : speed + ((Math.random()*5)+0),
+                    onFinish : function(){
+                        listener();
+                    }
+                });  
+            }
+            
+            for(var i in this.imageEquation){
+                this.tweenEquation[i] = new Kinetic.Tween({
+                    node : this.imageEquation[i],
+                    //finish at 
+                    x : -(this.stageWidth+this.imageEquation[i].getX())*2,
+                    easing : Kinetic.Easings['Linear'],
+                    duration : speed + ((Math.random()*5)+0),
+                    onFinish : function(){
+                        listener();
+                    }
+                });  
+            }
+
+            for(var i in this.imageArcsin){                
+                this.tweenArcsin[i] = new Kinetic.Tween({
+                    node : this.imageArcsin[i],
+                    //finish at 
+                    x : -(this.stageWidth+this.imageArcsin[i].getX())*2,
+                    easing : Kinetic.Easings['Linear'],
+                    duration : speed + ((Math.random()*5)+0),
+                    onFinish : function(){
+                        listener();
+                    }
+                });  
+            }
+
+            this.start();
             return this;
         },
-        setImages : function(url, count){
-            var k=this.imageSrcs.push(url);
-            this.imageCounts[--k]=count;
+        create : function(){
+            var maxHeight = this.maxHeight;
+            var stageWidth = this.stageWidth;
+            /*
+             * Group of content, all content animation has to be in this group
+             */
+            this.group=new Kinetic.Group({
+                x:stageWidth*1,
+                y:50,
+                draggable:true
+            });
+            
+            /**
+             * Finds directory to Main.js
+             */
+            var scripts= document.getElementsByTagName('script'); //find scripts tag on site
+            var path = scripts[scripts.length-1].src.split('?')[0];      // remove any ?query
+            var mydir= path.split('/').slice(0, -1).join('/')+'/';  // remove last filename part of path
+      
+            
+            /**
+             * Creating the integrals
+             */
+            var imageSrc = mydir+'Class/Animation/SimpleVisOOP/integral.png';
+            var image = new Image();
+            image.src = imageSrc;
+            
+            /*
+             * Kinetic objects for given count of integral.
+             */
+            for(var i = 0; i < this.integralCount; i++){
+
+                this.imageIntegral[i] = new Kinetic.Image({
+                    image:image,
+                    draggable:true
+                });
+                this.setRandPos(this.imageIntegral[i]);
+                this.group.add(this.imageIntegral[i]);
+            }
+            
+            /*
+             * Creating the derivatives
+             */
+            imageSrc = mydir+'Class/Animation/SimpleVisOOP/derivative.png';
+            image = new Image();
+            image.src = imageSrc;
+            
+            for(var i = 0; i < this.derivativeCount; i++){
+
+                this.imageDerivative[i] = new Kinetic.Image({
+                    image:image,
+                    draggable:true
+                });
+                this.setRandPos(this.imageDerivative[i]);
+                this.group.add(this.imageDerivative[i]);
+            }
+            
+            /*
+             * Creating the Equation
+             */
+            imageSrc = mydir+'Class/Animation/SimpleVisOOP/equation.png';
+            image = new Image();
+            image.src = imageSrc;
+            
+            for(var i = 0; i < this.equationCount; i++){
+
+                this.imageEquation[i] = new Kinetic.Image({
+                    image:image,
+                    draggable:true
+                });
+                this.setRandPos(this.imageEquation[i]);
+                this.group.add(this.imageEquation[i]);
+            }
+            
+            /*
+             * Creating the Arcsin
+             */
+            imageSrc = mydir+'Class/Animation/SimpleVisOOP/arcsin.png';
+            image = new Image();
+            image.src = imageSrc;
+            
+            for(var i = 0; i < this.arcsinCount; i++){
+
+                this.imageArcsin[i] = new Kinetic.Image({
+                    image:image,
+                    draggable:true
+                });
+                this.setRandPos(this.imageArcsin[i]);
+                this.group.add(this.imageArcsin[i]);
+            }
+           
+
             return this;
         },
+                
+        /**
+         * Sets random rotation (base is Math.PI/8), scale object (from 0.6 to 1)
+         * and make starting points
+         * 
+         * @param Kinetic.object obj
+         * @returns {_L4.SimpleVisOOP.prototype}
+         */
         setRandPos : function(obj){
-            var xRand=(Math.random() * self.stageWidth)+0;
-            var yRand=(Math.random() * self.maxHeight)+0;
+            // Relative to group position, max: stageWidth+group.getX()
+            var xRand=(Math.random() * this.stageWidth)+0;
+            var yRand=(Math.random() * this.maxHeight)+0;
+            // rot from 0 to 1
             var rot=(Math.random()*1)+0;
-            var positive=1;
+            var positive=1;//rot clockvise or anticlockvise
             if(rot<0.5)positive=-1;
-            var scale=1-rot*0.5;
+            //scale min 1-1*0.6 = 0.4
+            var scale=1-rot*0.6;
             obj.setX(xRand);
             obj.setY(yRand-obj.getHeight());
             obj.rotate(Math.PI/8*rot*positive);
             obj.setScale(scale);
-            return obj;
-        },
-        objFromImg : function(imag){
-            var obj=new Kinetic.Image({      
-                image:imag,
-                draggable:true
-            });
-            return obj;
-        },
-        randTween : function(node){
-            var listener = self.callFinished();
-            var t=new Kinetic.Tween({
-                node:node,
-                x:-(self.stageWidth+node.getX())*2,
-                easing: Kinetic.Easings['Linear'],
-                duration:10,
-                onFinish:function(){
-                    self.finished=true;   
-               //     listener();
-                }
-            });
-            return t;
-        },
-        setDoStart : function(val){
-           
-            this.doStart = val;
+            return this;
         }
     };
     strz_console.Extend(SimpleVisOOP, strz_console.VisualizationNode);

@@ -1,6 +1,11 @@
 (function(){
     strz_console.VisualizationNode=function(){};
     strz_console.VisualizationNode.prototype={
+        
+        group : null,
+        stageWidth : null,
+        maxHeight : null,
+        
         finishedListener : null,
         setFinishedListener : function(listener) {
             this.finishedListener = listener;

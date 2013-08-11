@@ -19,20 +19,7 @@
         <script src="assets/script/Js/Class/Base64.js"></script>
         <script src="assets/script/Js/Class/Convert.class.js"></script>
         <!-- >helpers -->
-        
-        <!-- DEPRECATED -->
-        <!-- visualization base old -->
-        <script src="assets/script/Js/Class/Visualization.class.js"></script>
-        <!-- >old visualization base -->
-  
-        <!-- visualizations old -->
-        <script src="assets/script/Js/Class/WelcomeVis.class.js"></script>
-        <script src="assets/script/Js/Class/BinaryTextVis.class.js"></script>
-        <script src="assets/script/Js/Class/MathVis/MathVis.class.js"></script>
-        <script src="assets/script/Js/Class/ThreeDVis/ThreeDVis.class.js"></script>
-        <!-- >old -->
-        <!-- >DEPRECATED -->
-        
+   
         
         <!-- system -->
         <script src="assets/script/Js/Class/CanvasConsole/Lib/Core.js"></script>
@@ -60,12 +47,8 @@
         
         <!-- Animations -->
         <script src="assets/script/Js/Class/Animation/BinaryTextVisOOP.class.js"></script>
-        <script src="assets/script/Js/Class/Animation/MathVisOOP/MathVisOOP.class.js"></script>
         <script src="assets/script/Js/Class/Animation/SimpleVisOOP/SimpleVisOOP.class.js"></script>
-        
-        <script src="assets/script/Js/Class/Animation/BinaryTextVisListener.class.js"></script>
-        <script src="assets/script/Js/Class/Animation/MathVisListener/MathVisListener.class.js"></script>
-        <!-- >Animations -->
+         <!-- >Animations -->
         
         <!-- ACTION -->
         <!-- main -->

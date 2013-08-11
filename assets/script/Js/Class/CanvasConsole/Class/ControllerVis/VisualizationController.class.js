@@ -13,7 +13,7 @@
             self._initAttrs(obj);
         
             //DEPRECATED
-            self.initCleanerListener();
+           // self.initCleanerListener();
         };
         __construct(obj);
     };
@@ -22,6 +22,7 @@
      * add new visualization
      */
         add:function(visualization, order, playTimes, args){
+           
             var k=this.bin.push(visualization);
             k--;
             this.order[k]=order;
@@ -33,8 +34,9 @@
         start:function(order){
             if(!this.current){
                 try{
-                    this.current = new this.bin[this.key[order]](
-                            this.getWidth(), this.getHeight(), this.arguments[order]);
+                    this.current = new this.bin[this.key[order]]
+                        (this.getWidth(), this.getHeight(), this.arguments[order]);
+                        
                     /**
                      * Every object should have setFinishedListener
                      * 
@@ -46,10 +48,9 @@
                             call: 'listenerFinished'
                         });
                     }
-                    this.getLayer().add(this.current.get());
+                    else this.addFinishListener(this.current);
                     
-                    //Layer
-                    console.log(this.getLayer());
+                    this.getLayer().add(this.current.get());
                     
                     /**
                      * Main condition is for new objects, else is for old objects
@@ -65,7 +66,7 @@
                     if(this.order.length>0){
                         for(ord in this.order)this.clear(this.order[ord]);
                         console.log('Nothing to play: cleaning up...');
-                        throw err;
+                    //    throw err;
 
                     }   
                 }
@@ -124,6 +125,7 @@
             return found;
         },
         finish:function(){
+            var controller = this;
             if(this.current){
                
                 this.current.destr();
@@ -133,6 +135,11 @@
                 
                 this.current.remove();    
                 this.current = null; 
+                
+                console.log('VisController: finished');
+                 var k=controller.getFirstFreeKey(controller.key[controller.currentOrder]);
+                        controller.start(controller.order[k]);
+                
             }
         },
     /*
@@ -193,7 +200,25 @@
          */
         initCleanerListener:function(){
             this.cleanerListener=window.setInterval(this.intervalCleaner(), 2000);
-        }
+        },
+        
+        //LISTENER HERE:
+        /**
+         * adds listener
+         */
+        addFinishListener : function(obj){
+            obj['finishListener'] = this.callFinishListener();
+        },
+        
+        /**
+         * listener called on finish
+         */
+         callFinishListener : function(){
+             controller = this;
+             return function(){
+                 controller.finish();
+             };
+         }
     };
     strz_console.Extend(
             strz_console.VisualizationController, strz_console.VisualizationContainer);

@@ -38,6 +38,7 @@
                      * Every object should have setFinishedListener if not exist
                      * add listener
                      * 
+                     * TODO: set all animations finishedListener and delete timeouts
                      */
                     if( typeof(this.current.setFinishedListener) !== 'undefined' ){
                         this.current.setFinishedListener({

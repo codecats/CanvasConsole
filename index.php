@@ -16,8 +16,8 @@
         <script src="./assets/script/Js/Lib/three.min.js"></script>
         <!-- CLASSES -->
         <!-- helpers -->
-        <script src="assets/script/Js/Class/Base64.js"></script>
-        <script src="assets/script/Js/Class/Convert.class.js"></script>
+        <script src="assets/script/Js/Class/Helpers/Base64.js"></script>
+        <script src="assets/script/Js/Class/Helpers/Convert.class.js"></script>
         <!-- >helpers -->
    
         

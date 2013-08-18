@@ -11,9 +11,6 @@
         var self=this;
         var __construct=function(obj){
             self._initAttrs(obj);
-        
-            //DEPRECATED
-           // self.initCleanerListener();
         };
         __construct(obj);
     };
@@ -38,7 +35,8 @@
                         (this.getWidth(), this.getHeight(), this.arguments[order]);
                         
                     /**
-                     * Every object should have setFinishedListener
+                     * Every object should have setFinishedListener if not exist
+                     * add listener
                      * 
                      * TODO: set all animations finishedListener and delete timeouts
                      */
@@ -54,10 +52,9 @@
                     
                     /**
                      * Main condition is for new objects, else is for old objects
-                     * TODO: remove else condition
                      */
-                    if( typeof(this.current.initMove) !== 'undefined')this.current.initMove();
-                    else this.current.init();
+                    this.current.initMove();
+
                     
                     this.current.start();
                     
@@ -130,16 +127,15 @@
                
                 this.current.destr();
                 
-            //     console.log('131');
-            //    console.log(this.current);
-                
                 this.current.remove();    
                 this.current = null; 
-                
-                console.log('VisController: finished');
-                 var k=controller.getFirstFreeKey(controller.key[controller.currentOrder]);
+
+                if(controller.playMode==='loop'){
+                    if(controller.currentOrder){
+                        var k=controller.getFirstFreeKey(controller.key[controller.currentOrder]);
                         controller.start(controller.order[k]);
-                
+                    }
+                 }            
             }
         },
     /*
@@ -151,57 +147,19 @@
             this.countToPlay.pop(k);
             this.bin.pop(k);
         },
-    /**
-     * DEPRECATED, use listenerFinished
-     * 'cleaner' - timer check if visualization is finished, and if flag is set then
-     * automaticly destroy current object
-     * 
-     * TODO: remove cleanerListener, intervalCleaner, initCleanerListener
-     */
-        cleanerListener:null,
-        intervalCleaner:function(){
-            var controller=this;
-            return function(){
-                if(controller.current){
-                    try{
-                        console.log(controller.current);
-                        if(controller.current.isFinished()){
-                            controller.finish();
-                        }
-                    }catch(err){
-                        console.log('New types of Visulalization has no \'isFinished\' method');
-                    }
-                }else if(controller.playMode==='loop'){
-                    if(controller.currentOrder){
-                        var k=controller.getFirstFreeKey(controller.key[controller.currentOrder]);
-                        controller.start(controller.order[k]);
-                    }
-                }
-            };
-        },
+ 
         /**
+         * EXTENDING LISTENER
          * Observator listener for new objects type
          * 
          * @returns {undefined}
          */
         listenerFinished : function(){
             this.finish();
-            if(this.playMode === 'loop'){
-                if(this.currentOrder){
-                     var k=this.getFirstFreeKey(this.key[this.currentOrder]);
-                     this.start(this.order[k]);
-                }
-            }
-        },
-        /**
-         * DEPRECATED
-         * TODO: remove this
-         * @returns {undefined}
-         */
-        initCleanerListener:function(){
-            this.cleanerListener=window.setInterval(this.intervalCleaner(), 2000);
+
         },
         
+        //DECORATOR LISTENER
         //LISTENER HERE:
         /**
          * adds listener
@@ -217,6 +175,7 @@
              controller = this;
              return function(){
                  controller.finish();
+
              };
          }
     };

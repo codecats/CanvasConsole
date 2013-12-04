@@ -11,6 +11,7 @@
     <body>
     <div class="console">
         <div id="container"></div>
+        <script src="assets/script/Js/bug.js"></script>
         <!-- LIBS -->
         <script src="./assets/script/Js/Lib/kinetic-v4.5.1.min.js"></script>
         <script src="./assets/script/Js/Lib/three.min.js"></script>
@@ -48,6 +49,7 @@
         <!-- Animations -->
         <script src="assets/script/Js/Class/Animation/BinaryTextVisOOP.class.js"></script>
         <script src="assets/script/Js/Class/Animation/SimpleVisOOP/SimpleVisOOP.class.js"></script>
+        <script src="assets/script/Js/Class/Animation/Floor.class.js"></script>
          <!-- >Animations -->
         
         <!-- ACTION -->

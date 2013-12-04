@@ -103,7 +103,7 @@
                     listener();
                 }
 
-            },layer);
+            }, this.getLayer());
             return this;
         },
         create : function(){

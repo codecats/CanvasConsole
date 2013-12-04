@@ -47,8 +47,13 @@
                     }
                     else this.addFinishListener(this.current);
                     
-                    this.getLayer().add(this.current.get());
+                    /*
+                     * 3d animations needs stage
+                     */
                     
+    
+                    if (this.current.get() !== null)this.getLayer().add(this.current.get());
+                    this.current.setLayer(this.getLayer());
                     /**
                      * Main condition is for new objects, else is for old objects
                      */
@@ -62,7 +67,7 @@
                     if(this.order.length>0){
                         for(ord in this.order)this.clear(this.order[ord]);
                         console.log('Nothing to play: cleaning up...');
-                    //    throw err;
+                        throw err;
 
                     }   
                 }

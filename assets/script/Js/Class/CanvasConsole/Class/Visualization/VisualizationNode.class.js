@@ -5,7 +5,6 @@
         group : null,
         stageWidth : null,
         maxHeight : null,
-        
         finishedListener : null,
         setFinishedListener : function(listener) {
             this.finishedListener = listener;
@@ -22,6 +21,12 @@
             return function(){
                 self.finishedListener['object'][self.finishedListener['call']]();
             };
+        },
+        setLayer : function (layer) {
+            this._set('layer', layer);
+        },
+        getLayer : function() {
+            return this._get('layer');
         },
         /**
          * Initialize data

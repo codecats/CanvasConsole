@@ -31,8 +31,11 @@
         start:function(order){
             if(!this.current){
       //          try{
+                    var args = this.arguments[order];
+                    args = args || {};
+                    if (typeof(args['baseDir']) === 'undefined') args['baseDir'] = this._get('baseDir');
                     this.current = new this.bin[this.key[order]]
-                        (this.getWidth(), this.getHeight(), this.arguments[order]);
+                        (this.getWidth(), this.getHeight(), args);
                         
                     /**
                      * Every object should have setFinishedListener if not exist

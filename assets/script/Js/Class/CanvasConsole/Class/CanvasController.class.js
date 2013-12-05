@@ -50,9 +50,10 @@
         visController: strz_console.VisualizationController,
         initVisController: function() {
             this.visController = new this.visController({
-                layer: this.layer,
-                width: this.stage.getWidth(),
-                height: this._get('consoleY')
+                layer   : this.layer,
+                width   : this.stage.getWidth(),
+                height  : this._get('consoleY'),
+                baseDir : this._get('baseDir')
             });
             var vis = this._get('visualizations');
             var visOrder = this._get('visualizationOrder');

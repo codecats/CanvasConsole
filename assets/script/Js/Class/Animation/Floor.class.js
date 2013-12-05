@@ -66,7 +66,7 @@
             var loader  = new THREE.JSONLoader(),
                 me      = this;
                
-            loader.load('assets/script/Js/Class/Animation/models/label.js', function (geometry, materials) {
+            loader.load(me._get('baseDir') + '/Class/Animation/models/label.js', function (geometry, materials) {
                 me.mesh = new THREE.Mesh(
                         geometry, 
                         new THREE.MeshNormalMaterial(materials)

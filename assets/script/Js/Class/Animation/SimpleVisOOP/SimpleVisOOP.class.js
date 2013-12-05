@@ -151,18 +151,14 @@
                 draggable:true
             });
             
-            /**
-             * Finds directory to Main.js
-             */
-            var scripts= document.getElementsByTagName('script'); //find scripts tag on site
-            var path = scripts[scripts.length-1].src.split('?')[0];      // remove any ?query
-            var mydir= path.split('/').slice(0, -1).join('/')+'/';  // remove last filename part of path
+            
+            var mydir= this._get('baseDir') + '/';
       
             
             /**
              * Creating the integrals
              */
-            var imageSrc = mydir+'Class/Animation/SimpleVisOOP/integral.png';
+            var imageSrc = mydir + '/Class/Animation/SimpleVisOOP/integral.png';
             var image = new Image();
             image.src = imageSrc;
             
@@ -182,7 +178,7 @@
             /*
              * Creating the derivatives
              */
-            imageSrc = mydir+'Class/Animation/SimpleVisOOP/derivative.png';
+            imageSrc = mydir + 'Class/Animation/SimpleVisOOP/derivative.png';
             image = new Image();
             image.src = imageSrc;
             
@@ -199,7 +195,7 @@
             /*
              * Creating the Equation
              */
-            imageSrc = mydir+'Class/Animation/SimpleVisOOP/equation.png';
+            imageSrc = mydir + 'Class/Animation/SimpleVisOOP/equation.png';
             image = new Image();
             image.src = imageSrc;
             
@@ -216,7 +212,7 @@
             /*
              * Creating the Arcsin
              */
-            imageSrc = mydir+'Class/Animation/SimpleVisOOP/arcsin.png';
+            imageSrc = mydir + 'Class/Animation/SimpleVisOOP/arcsin.png';
             image = new Image();
             image.src = imageSrc;
             

@@ -37,7 +37,7 @@
          * @returns {Visualization}
          */
         start:function() {
-            if (this.isReady === true)this.animate();
+            if (this.isReady === true) this.animate();
             return this;
         },
         /*
@@ -53,16 +53,17 @@
          * @returns {Visualization}
          */
         remove:function(){
+            this.isReady = false
             clearTimeout(this.timeout);
             this.animate = function() {};
             var children = this.scene.children;
-            for(var i = children.length-1;i>=0;i--){
+            for (var i = children.length - 1; i >= 0; i--) {
                 var child = children[i];
                 this.scene.remove(child);
                 child = null;
             };
-            this.mesh = null;
-            this.renderer = null;
+            this.mesh       = null;
+            this.renderer   = null;
             this.layer3d.destroy();
             return this;
         },
@@ -126,8 +127,8 @@
          * @return Kinetic.Group
          */
         create:function(){
-            this.layer3d = new Kinetic.Layer();
-            var stage = this.getLayer().parent;
+            this.layer3d    = new Kinetic.Layer();
+            var stage       = this.getLayer().parent;
             stage.add(this.layer3d);
             this.layer3d.moveToBottom();
             

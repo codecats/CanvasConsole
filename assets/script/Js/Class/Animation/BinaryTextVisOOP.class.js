@@ -17,13 +17,12 @@
         tween : null,
         tweenBg : null,
         anim : null,
-        fow : true,
         txt : null,
         
         init : function(stageWidht, maxHeight, args){
             this.stageWidth=stageWidth;
             this.maxHeight=maxHeight;
-            this.txt=Convert.toBinary(document.documentElement.innerHTML,5);
+            this.txt=document.documentElement.innerHTML;
             this.create();
         },
         start : function(){
@@ -52,13 +51,12 @@
             return this.group;
         },
         initMove : function(){
-            var listener = this.callFinished();
-            var fow = this.fow;
-            var group = this.group;
-            var stageWidth = this.stageWidth;
-            var maxHeight = this.maxHeight;
-            var txt = this.txt;
-            var codeBgText = this.codeBgText;
+            var listener = this.callFinished(),
+                group = this.group,
+                stageWidth = this.stageWidth,
+                maxHeight = this.maxHeight,
+                txt = this.txt,
+                codeBgText = this.codeBgText;
             
             this.tween=new Kinetic.Tween({
                 node:group,
@@ -68,40 +66,35 @@
             });
             this.tweenBg=new Kinetic.Tween({
                 node:codeBgText,
-                x:-stageWidth,
+                x:-stageWidth * 2,
                 easing: Kinetic.Easings['Linear'],
-                duration:3
+                duration:6
             });
             var tween = this.tween;
             var tweenBg = this.tweenBg;
             
+            var gwidth=group.getWidth()*2;
+            var gx=0;
+            var gheight=maxHeight;
+            var gy=0;
+            for(var i=0;i<40;++i){
+                xPos=Math.floor((Math.random()*gwidth)+gx);
+                yPos=Math.floor((Math.random()*gheight)+gy);
+                var t=new Kinetic.Text({
+                    x:xPos,
+                    y:yPos,
+                    text: Convert.toBinary(txt, 5).substr(i,i+4),
+                    fontSize:12,
+                    fontFamily:'Courier New',
+                    fill:'#02ff02'
+                });
+                group.add(t);
+            }
+            
             this.anim=new Kinetic.Animation(function(frame){
 
-                if(group.getX()<-(stageWidth-10)&&fow===true){
-                    tween.reverse();
-                    tweenBg.reverse();
-                    fow=false;
-                    var gwidth=group.getWidth()*2;
-                    var gx=0;
-                    var gheight=maxHeight;
-                    var gy=0;
-                    for(var i=0;i<40;++i){
-                        xPos=Math.floor((Math.random()*gwidth)+gx);
-                        yPos=Math.floor((Math.random()*gheight)+gy);
-                        var t=new Kinetic.Text({
-                            x:xPos,
-                            y:yPos,
-                            text: txt.substr(i,i+4),
-                            fontSize:12,
-                            fontFamily:'Courier New',
-                            fill:'#02ff02'
-                        });
-                        group.add(t);
-                    }
-                }
-                if(fow===false&&group.getX()+10>stageWidth){
-                    listener();
-                }
+                if(group.getX() < -(stageWidth - 10)) listener();
+                
 
             }, this.getLayer());
             return this;

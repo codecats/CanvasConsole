@@ -8,13 +8,13 @@ var contr = new strz_console.CanvasController({
     visualizations:{
         //command : [class, count, args]
 
-        'MATH' : [strzVis.Math, 1, {}],
-        'CODE' : [strzVis.Code, Infinity, {}],
-        'CATS' : [strzVis.Label, Infinity, {}]
+        'MATH':[strzVis.Math, 1, {}],
+        'CODE':[strzVis.Code, Infinity, {}],
+        'CATS':[strzVis.Label, Infinity, {}]
     },
     visualizationOrder:{
         play    :'loop',
-        start   :'A'//starting index not counting down in first show
+        start   :'MATH'//starting index not counting down in first show
     }
 });
 contr.run();

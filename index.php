@@ -49,7 +49,7 @@
         <!-- Animations -->
         <script src="assets/script/Js/Class/Animation/BinaryTextVisOOP.class.js"></script>
         <script src="assets/script/Js/Class/Animation/SimpleVisOOP/SimpleVisOOP.class.js"></script>
-        <script src="assets/script/Js/Class/Animation/Floor.class.js"></script>
+        <script src="assets/script/Js/Class/Animation/Label.class.js"></script>
          <!-- >Animations -->
         
         <!-- ACTION -->

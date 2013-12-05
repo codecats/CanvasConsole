@@ -10,7 +10,7 @@ var contr = new strz_console.CanvasController({
 
         'A':[SimpleVisOOP, 1, {}],
         'B':[BinaryTextVisOOP, Infinity, {}],
-        'C':[Floor, Infinity, {}]
+        'C':[Label, Infinity, {}]
     },
     visualizationOrder:{
         play    :'loop',

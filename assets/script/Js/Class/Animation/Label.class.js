@@ -1,5 +1,5 @@
 (function(){
-    Floor = function(stageWidth, maxHeight, args){
+    Label = function(stageWidth, maxHeight, args){
         
         var __construct = function(stageWidth, maxHeight, args){
            self.init(stageWidth, maxHeight, args);
@@ -7,7 +7,7 @@
         self = this;
         __construct(stageWidth, maxHeight, args);
     };
-    Floor.prototype={
+    Label.prototype={
         
         group : null,
         maxWidth : null,
@@ -54,6 +54,15 @@
          */
         remove:function(){
             clearTimeout(this.timeout);
+            this.animate = function() {};
+            var children = this.scene.children;
+            for(var i = children.length-1;i>=0;i--){
+                var child = children[i];
+                this.scene.remove(child);
+                child = null;
+            };
+            this.mesh = null;
+            this.renderer = null;
             this.layer3d.destroy();
             return this;
         },
@@ -165,6 +174,6 @@
 
         }
     };
-    strz_console.Extend(Floor, strz_console.VisualizationNode);
+    strz_console.Extend(Label, strz_console.VisualizationNode);
 })();
 

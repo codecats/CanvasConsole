@@ -30,7 +30,7 @@
         },
         start:function(order){
             if(!this.current){
-                try{
+      //          try{
                     this.current = new this.bin[this.key[order]]
                         (this.getWidth(), this.getHeight(), this.arguments[order]);
                         
@@ -63,14 +63,14 @@
                     this.current.start();
                     
                     this.currentOrder=order;
-                }catch(err){      
+         /*       }catch(err){      
                     if(this.order.length>0){
                         for(ord in this.order)this.clear(this.order[ord]);
                         console.log('Nothing to play: cleaning up...');
                         throw err;
 
                     }   
-                }
+                }*/
             }
         },
         setPlayMode:function(mode){

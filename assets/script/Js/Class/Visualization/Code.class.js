@@ -2,7 +2,7 @@
  * child of Visualization
  */
 (function(){
-    BinaryTextVisOOP = function(stageWidth, maxHeight, args){
+    strzVis.Code = function(stageWidth, maxHeight, args){
         
         var __construct = function(stageWidth, maxHeight, args){
            self.init(stageWidth, maxHeight, args);
@@ -10,7 +10,7 @@
         self = this;
         __construct(stageWidth, maxHeight, args);
     };
-    BinaryTextVisOOP.prototype = {
+    strzVis.Code.prototype = {
 
         codeText : null,
         codeBgText : null,
@@ -131,5 +131,5 @@
             return this;
         }
     };
-    strz_console.Extend(BinaryTextVisOOP, strz_console.VisualizationNode);
+    strz_console.Extend(strzVis.Code, strz_console.VisualizationNode);
 })();

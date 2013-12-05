@@ -2,6 +2,7 @@
  * namespace and extending method
  */
 var strz_console={};
+var strzVis = {};
 (function(){
     /**
      * prototype base extending: public, private and privileged/closure fields

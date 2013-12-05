@@ -57,8 +57,8 @@
         destr : function(){
             this.tween.reset();
             this.anim.stop();
-            this.tween=null;
-            this.anim=null;
+            this.tween  = null;
+            this.anim   = null;
         },
                 
         /*
@@ -73,13 +73,12 @@
          * remember: trigger for run animation should be method start
          */
         initMove : function(){
-            var listener = this.callFinished(),
-                group = this.group,
-                stageWidth = this.stageWidth,
-                maxHeight = this.maxHeight,
-                txt = this.txt;
+            var listener    = this.callFinished(),
+                group       = this.group,
+                stageWidth  = this.stageWidth,
+                maxHeight   = this.maxHeight;
             
-            this.tween=new Kinetic.Tween({
+            this.tween = new Kinetic.Tween({
                 node:group,
                 x:-stageWidth,
                 easing: Kinetic.Easings['Linear'],
@@ -96,22 +95,22 @@
             return this;
         },
         create : function(){
-            var maxHeight = this.maxHeight;
-            var stageWidth = this.stageWidth;
-            var txt = 'abc';
-            this.codeText=new Kinetic.Text({
-                x:0,
-                y:0,
-                height:maxHeight,
-                text: txt,
+            var maxHeight   = this.maxHeight,
+                stageWidth  = this.stageWidth,
+                txt         = 'abc';
+            this.codeText = new Kinetic.Text({
+                x       : 0,
+                y       : 0,
+                height  : maxHeight,
+                text    : txt,
                 fontSize:17,
-                fontFamily:'Courier New',
-                fill:'#02ff02'
+                fontFamily:' Courier New',
+                fill    : '#02ff02'
             });
             this.group=new Kinetic.Group({
-                x:stageWidth,
-                y:20,
-                draggable:true
+                x : stageWidth,
+                y : 20,
+                draggable : true
             });
             this.group.add(this.codeText);
             return this;

@@ -8,9 +8,9 @@ var contr = new strz_console.CanvasController({
     visualizations:{
         //command : [class, count, args]
 
-        'A':[SimpleVisOOP, 1, {}],
-        'B':[BinaryTextVisOOP, Infinity, {}],
-        'C':[Label, Infinity, {}]
+        'MATH' : [strzVis.Math, 1, {}],
+        'CODE' : [strzVis.Code, Infinity, {}],
+        'CATS' : [strzVis.Label, Infinity, {}]
     },
     visualizationOrder:{
         play    :'loop',

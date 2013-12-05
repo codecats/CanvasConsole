@@ -1,5 +1,5 @@
 (function(){
-    Label = function(stageWidth, maxHeight, args){
+    strzVis.Label = function(stageWidth, maxHeight, args){
         
         var __construct = function(stageWidth, maxHeight, args){
            self.init(stageWidth, maxHeight, args);
@@ -7,7 +7,7 @@
         self = this;
         __construct(stageWidth, maxHeight, args);
     };
-    Label.prototype={
+    strzVis.Label.prototype={
         
         group : null,
         maxWidth : null,
@@ -76,7 +76,7 @@
             var loader  = new THREE.JSONLoader(),
                 me      = this;
                
-            loader.load(me._get('baseDir') + '/Class/Animation/models/label.js', function (geometry, materials) {
+            loader.load(me._get('baseDir') + '/Class/Visualization/Models/Label.js', function (geometry, materials) {
                 me.mesh = new THREE.Mesh(
                         geometry, 
                         new THREE.MeshNormalMaterial(materials)
@@ -175,6 +175,6 @@
 
         }
     };
-    strz_console.Extend(Label, strz_console.VisualizationNode);
+    strz_console.Extend(strzVis.Label, strz_console.VisualizationNode);
 })();
 

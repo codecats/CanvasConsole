@@ -4,7 +4,7 @@
  * IMPORTANT: do not use array.push(kinetic.object) it make layer errors
  */
 (function(){
-    SimpleVisOOP = function(stageWidth, maxHeight, args){
+    strzVis.Math = function(stageWidth, maxHeight, args){
         
         var __construct = function(stageWidth, maxHeight, args){
            self.init(stageWidth, maxHeight, args);
@@ -12,7 +12,7 @@
         self = this;
         __construct(stageWidth, maxHeight, args);
     };
-    SimpleVisOOP.prototype = {
+    strzVis.Math.prototype = {
 
         imageIntegral   : [],
         tweenIntegral   : [],
@@ -158,7 +158,7 @@
             /**
              * Creating the integrals
              */
-            var imageSrc = mydir + '/Class/Animation/SimpleVisOOP/integral.png';
+            var imageSrc = mydir + 'Class/Visualization/Math/integral.png';
             var image = new Image();
             image.src = imageSrc;
             
@@ -178,7 +178,7 @@
             /*
              * Creating the derivatives
              */
-            imageSrc = mydir + 'Class/Animation/SimpleVisOOP/derivative.png';
+            imageSrc = mydir + 'Class/Visualization/Math/derivative.png';
             image = new Image();
             image.src = imageSrc;
             
@@ -195,7 +195,7 @@
             /*
              * Creating the Equation
              */
-            imageSrc = mydir + 'Class/Animation/SimpleVisOOP/equation.png';
+            imageSrc = mydir + 'Class/Visualization/Math/equation.png';
             image = new Image();
             image.src = imageSrc;
             
@@ -212,7 +212,7 @@
             /*
              * Creating the Arcsin
              */
-            imageSrc = mydir + 'Class/Animation/SimpleVisOOP/arcsin.png';
+            imageSrc = mydir + 'Class/Visualization/Math/arcsin.png';
             image = new Image();
             image.src = imageSrc;
             
@@ -254,5 +254,5 @@
             return this;
         }
     };
-    strz_console.Extend(SimpleVisOOP, strz_console.VisualizationNode);
+    strz_console.Extend(strzVis.Math, strz_console.VisualizationNode);
 })();

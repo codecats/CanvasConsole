@@ -19,7 +19,7 @@
         anim : null,
         txt : null,
         
-        init : function(stageWidht, maxHeight, args){
+        init : function(stageWidth, maxHeight, args){
             this.stageWidth=stageWidth;
             this.maxHeight=maxHeight;
             this.txt=document.documentElement.innerHTML;

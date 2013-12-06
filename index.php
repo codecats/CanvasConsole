@@ -50,6 +50,7 @@
         <script src="assets/script/Js/Class/Visualization/Code.class.js"></script>
         <script src="assets/script/Js/Class/Visualization/Math/Math.class.js"></script>
         <script src="assets/script/Js/Class/Visualization/Label/Label.class.js"></script>
+        <script src="assets/script/Js/Class/Visualization/Tech/Tech.class.js"></script>
          <!-- >Animations -->
         
         <!-- ACTION -->

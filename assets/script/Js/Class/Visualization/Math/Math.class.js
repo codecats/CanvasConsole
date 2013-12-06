@@ -150,11 +150,9 @@
                 y:50,
                 draggable:true
             });
-            
-            
+                       
             var mydir= this._get('baseDir') + '/';
-      
-            
+
             /**
              * Creating the integrals
              */

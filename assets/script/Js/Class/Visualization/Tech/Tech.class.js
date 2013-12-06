@@ -1,9 +1,9 @@
 /*
  * child of Visualization
  */
-(function(run){
-    if (typeof(run) === 'undefined') throw new Error('this is just example');
-    Example = function(stageWidth, maxHeight, args){
+(function(){
+
+    strzVis.Tech = function(stageWidth, maxHeight, args){
         
         var __construct = function(stageWidth, maxHeight, args){
            self.init(stageWidth, maxHeight, args);
@@ -11,12 +11,20 @@
         self = this;
         __construct(stageWidth, maxHeight, args);
     };
-    Example.prototype = {
+    strzVis.Tech.prototype = {
         /*
          * Declare here nedded params
          */
-        tween   : null,
-        anim    : null,
+        logo   : {
+            git     : {},
+            php     : {},
+            mysql   : {},
+            jquery  : {},
+            linux   : {},
+            symfony : {},
+            www     : {}
+        },
+
         /*
          * Initialize basic params (declared before)
          */
@@ -30,8 +38,7 @@
          * Animations / tweens starts here
          */
         start : function(){
-            this.tween.play();
-            this.anim.start();
+ 
             return this;
         },
                 
@@ -73,48 +80,30 @@
          * remember: trigger for run animation should be method start
          */
         initMove : function(){
-            var listener    = this.callFinished(),
-                group       = this.group,
-                stageWidth  = this.stageWidth,
-                maxHeight   = this.maxHeight;
             
-            this.tween = new Kinetic.Tween({
-                node:group,
-                x:-stageWidth,
-                easing: Kinetic.Easings['Linear'],
-                duration:5
-            });
-           
-            
-            this.anim = new Kinetic.Animation(function(frame){
-
-                if(group.getX() < -(stageWidth - 10)) listener();
-                
-
-            }, this.getLayer());
             return this;
         },
         create : function(){
             var maxHeight   = this.maxHeight,
                 stageWidth  = this.stageWidth,
-                txt         = 'abc';
-            this.codeText = new Kinetic.Text({
-                x       : 0,
-                y       : 0,
-                height  : maxHeight,
-                text    : txt,
-                fontSize:17,
-                fontFamily:' Courier New',
-                fill    : '#02ff02'
+                dir         = this._get('baseDir') + '/';
+        
+            this.group = new Kinetic.Group({
+                x           : 0,
+                y           : 0,
+                draggable   : true
             });
-            this.group=new Kinetic.Group({
-                x : stageWidth,
-                y : 20,
-                draggable : true
-            });
-            this.group.add(this.codeText);
+            bug.d({lo:this.logo}, false);
+            var image = {};
+            for (var i in this.logo) {
+                var imageSrc = dir + 'Class/Visualization/Tech/min/' + i + '.jpeg';
+                image[i] = new Image();
+                image[i].src = imageSrc;
+            }
+            
+            bug.d({i:image});
             return this;
         }
     };
-    strz_console.Extend(Example, strz_console.VisualizationNode);
-})/*()*/;//no run the script
+    strz_console.Extend(strzVis.Tech, strz_console.VisualizationNode);
+})();

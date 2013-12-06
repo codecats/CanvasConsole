@@ -53,7 +53,7 @@
          * @returns {Visualization}
          */
         remove:function(){
-            this.isReady = false
+            this.isReady = false;
             clearTimeout(this.timeout);
             this.animate = function() {};
             var children = this.scene.children;
@@ -75,17 +75,18 @@
         initMove:function(){   
             var loader  = new THREE.JSONLoader(),
                 me      = this;
-               
-            loader.load(me._get('baseDir') + '/Class/Visualization/Label/Models/Label.js', function (geometry, materials) {
+            
+            loader.load(
+                    me._get('baseDir') + '/Class/Visualization/Label/Models/Labels.js', 
+                  //  me._get('baseDir') + '/Class/Visualization/Label/Models/untitled.js', 
+                    function (geometry, materials) {
+                        
                 me.mesh = new THREE.Mesh(
-                        geometry, 
-                        new THREE.MeshNormalMaterial(materials)
+                        geometry,
+                        new THREE.MeshNormalMaterial()
+                      //  new THREE.MeshBasicMaterial(materials)
                 );
-
-                for (var i = 0, length = materials.length; i < length; i++) {
-                    var mat = materials[i];
-                    mat.skinning = true;
-                }
+                
                 
                 me.scene.add(me.mesh);
                 me.isReady = true;
@@ -134,16 +135,16 @@
             
 
             this.camera = new THREE.PerspectiveCamera(
-                    40, 
+                    70, 
                     this._get('width') / this._get('height'), 
                     1, 
                     10000
             );
-            this.camera.position.x = -0.34;
-            this.camera.position.y = -7.14871;
-            this.camera.position.z = 5.23584;
+            this.camera.position.x = -0.1;
+            this.camera.position.y = 4.14871;
+            this.camera.position.z = 3.23584;
 
-            this.camera.rotation.x = 0.872665;
+            this.camera.rotation.x = -0.872665;
             this.camera.rotation.y = 0;
             this.camera.rotation.z = 0;
 
